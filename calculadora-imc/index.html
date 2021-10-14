@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IMCalc - Calcule o seu IMC</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png" type="image/png" sizes="16x16">
+</head>
+<body>
+    <div class="fundo">
+        <div class="content">
+            <div class="header">
+                <h3><strong>IMC</strong><em>alc</em></h3>
+            </div>
+            
+            <h3>Resultado</h3>
+            <h1 id="displayResult">0.0</h1>
+            <h5 id="resultText">-- (+) --</h5>
+            <h4 class="texto">Altura:</h4>
+            <input type="number" value="" id="altura" class="inpText" placeholder="Digite a sua altura em cm..."><br>
+            <h4 class="texto">Peso:</h4>
+            <input type="number" value="" id="peso" class="inpText" placeholder="Digite o seu peso em kg..."><br>
+            <input type="button" value="Calcular" class="button" onclick="calcular()">
+        </div>
+        <script>
+        
+            function calcular(){
+                var textaltura = document.getElementById('altura');
+                var textpeso = document.getElementById('peso');
+                var displayRes = document.getElementById('displayResult');
+                var resultTxt = document.getElementById('resultText')
+                var altura = Number(textaltura.value)/100;
+                var peso = Number(textpeso.value);
+                var resultIMC = peso / (altura*altura)
+                displayRes.innerText=resultIMC.toFixed(1)
+                    if(resultIMC <= 18.5){
+                        resultTxt.innerText='-- (Abaixo do peso) --'
+                    }else if(resultIMC > 18.5 && resultIMC < 25){
+                        resultTxt.innerText='-- (Peso ideal) --'
+                    }else if(resultIMC > 24.9 && resultIMC < 30){
+                        resultTxt.innerText='-- (Levimente acima do peso) --'
+                    }else if(resultIMC > 29.9 && resultIMC < 35){ 
+                        resultTxt.innerText='-- (Obesidade grau 1) --'
+                    }else if(resultIMC > 34.9 && resultIMC < 40){
+                        resultTxt.innerText='-- (Obesidade grau 2) --'
+                    }else if(resultIMC > 39.9){
+                        resultTxt.innerText='-- (Obesidade grau 3) --'
+                    }else{
+                        displayRes.innerText='ERRO'
+                        resultTxt.innerText='-- (ERRO) --'
+                    }
+            }
+
+        </script>
+    </div>
+</body>
+</html>
